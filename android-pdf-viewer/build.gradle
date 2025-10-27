@@ -1,19 +1,18 @@
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
+    id 'com.vanniktech.maven.publish' version '0.34.0'
 }
 
-group "com.github.marain87"
+group = "io.github.hoanguyenandpad"
+version = "4.0.0"
 
 android {
     namespace "com.github.barteksc.pdfviewer"
-
     compileSdk rootProject.tools.compileSdk
 
     defaultConfig {
         minSdk rootProject.tools.minSdk
         targetSdk rootProject.tools.targetSdk
-
     }
 
     buildTypes {
@@ -28,13 +27,10 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    publishing {
-        publishing {
-            singleVariant("release") {
-                withSourcesJar()
-                withJavadocJar()
-            }
-        }
+    mavenPublishing {
+        publishToMavenCentral()
+
+        signAllPublications()
     }
 }
 
@@ -43,16 +39,35 @@ dependencies {
     api 'com.github.marain87:PdfiumAndroid:1.9.8'
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'com.github.marain87'
-            artifactId = 'AndroidPdfViewer'
-            version = "3.2.8"
+mavenPublishing {
+    coordinates(group, "androidpdfviewer", version)
 
-            afterEvaluate {
-                from components.release
+    pom {
+        name = "AndroidPdfViewer"
+        description = "Android PDF Viewer based on PdfiumAndroid — a lightweight and efficient PDF rendering library."
+        inceptionYear = "2025"
+        url = "https://github.com/hoanguyenandpad/androidpdfviewer"
+
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
             }
+        }
+
+        developers {
+            developer {
+                id = "hoanguyenandpad"
+                name = "Hoa Nguyen"
+                url = "https://github.com/hoanguyenandpad"
+            }
+        }
+
+        scm {
+            url = "https://github.com/hoanguyenandpad/androidpdfviewer"
+            connection = "scm:git:git://github.com/hoanguyenandpad/androidpdfviewer.git"
+            developerConnection = "scm:git:ssh://git@github.com/hoanguyenandpad/androidpdfviewer.git"
         }
     }
 }

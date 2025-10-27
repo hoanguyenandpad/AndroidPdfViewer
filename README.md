@@ -1,7 +1,9 @@
+# ANDPAD This is a fork of the AndroidPdfViewer
 
-#### This is a fork of the [AndroidPdfViewer](https://github.com/barteksc/AndroidPdfViewer)
-switch back to the mainline repo when it gets migrated off JCenter
+## AndroidPdfViewer https://github.com/marain87/AndroidPdfViewer to support customize zooming config
 
+~~This is a fork of the [AndroidPdfViewer](https://github.com/barteksc/AndroidPdfViewer)
+switch back to the mainline repo when it gets migrated off JCenter~~
 
 # Android PdfViewer
 
@@ -12,6 +14,30 @@ so if you don't like 2.x version, try 1.x.__
 Library for displaying PDF documents on Android, with `animations`, `gestures`, `zoom` and `double tap` support.
 It is based on [PdfiumAndroid](https://github.com/barteksc/PdfiumAndroid) for decoding PDF files. Works on API 11 (Android 3.0) and higher.
 Licensed under Apache License 2.0.
+
+## ANDPAD guideline
+Doc: https://vanniktech.github.io/gradle-maven-publish-plugin/central/
+```bash
+Config keys in `android-pdf-viewer/build.gradle`
+# Maven Central
+mavenCentralUsername=${MAVEN_CENTRAL_USERNAME}
+mavenCentralPassword=${MAVEN_CENTRAL_PASSWORD}
+
+# GPG signing
+signing.keyId=${SIGNING_KEY_ID}
+signing.password=${SIGNING_PASSWORD}
+signing.secretKeyRingFile=${SIGNING_SECRET_KEY_RING_FILE}
+
+// publish and release
+./gradlew publishAndReleaseToMavenCentral
+```
+```gradle
+dependencies {
+  implementation 'io.github.hoanguyenandpad:androidpdfviewer:4.0.0' // or newest version
+}
+```
+## 4.0.0 (2025-10-24) ANDPAD update
+* Update zooming scale values: TICKET: https://88-oct.atlassian.net/browse/APOWNER-9128
 
 ## 3.2.8
 * upgrade gradle plugin
@@ -221,7 +247,7 @@ Most important section is _Improving multiple APKs creation and versionCode hand
 You only need to do this in your application, no need for forking PdfiumAndroid or so.
 
 ### Why I cannot open PDF from URL?
-Downloading files is long running process which must be aware of Activity lifecycle, must support some configuration, 
+Downloading files is long running process which must be aware of Activity lifecycle, must support some configuration,
 data cleanup and caching, so creating such module will probably end up as new library.
 
 ### How can I show last opened page after configuration change?

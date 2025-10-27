@@ -1,3 +1,6 @@
+## 4.0.0 (2025-10-24) ANDPAD update
+* Update zooming scale values: TICKET: https://88-oct.atlassian.net/browse/APOWNER-9128
+
 ## 3.2.8 (2025-08-19)
 * upgrade gradle plugin
 * Update [PdfiumAndroid library](https://github.com/marain87/PdfiumAndroid) to 1.9.8
